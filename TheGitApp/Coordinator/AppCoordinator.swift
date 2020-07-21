@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class AppCoordinator {
+class AppCoordinator: Coordinator {
     private var window: UIWindow
     private var navigationController: UINavigationController
     private var repositoryListCoordinator: RepositoryListCoordinator?
@@ -15,11 +15,13 @@ class AppCoordinator {
     }
     
     func start() {
-        self.repositoryListCoordinator = RepositoryListCoordinator(navigator: navigationController, apiClient: apiClient)
-
-        window.rootViewController = navigationController
+        self.repositoryListCoordinator = RepositoryListCoordinator(
+            navigator: navigationController,
+            apiClient: apiClient
+        )
+        coordinate(to: self.repositoryListCoordinator!)
         
-        self.repositoryListCoordinator?.start()
+        window.rootViewController = navigationController
         window.makeKeyAndVisible()
     }
 }

@@ -15,14 +15,17 @@ class RepositoryDetailViewController: UITableViewController {
     
     @IBOutlet weak var readmeView: UITextView!
     
-    var viewModel: RepositoryDetailViewModel?
+    var viewModel: RepositoryDetailViewModel? {
+        didSet {
+            setupBind()
+        }
+    }
     var repository: Repository?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         nameLabel.text = self.viewModel?.repository.name
-        
         userLabel.text = self.viewModel?.repository.owner.login
         linkLabel.text = self.viewModel?.repository.htmlUrl
         updatedAtLabel.text = self.viewModel?.repository.updatedAt
@@ -30,19 +33,21 @@ class RepositoryDetailViewController: UITableViewController {
         forksLabel.text = String(self.viewModel?.repository.forksCount ?? 0)
         watchersLabel.text = String(self.viewModel?.repository.watchersCount ?? 0)
 
-        setupBind()
-        
         viewModel?.fetch()
     }
     
     private func setupBind() {
-        viewModel?.resultFetched = { [weak self] () in
-            DispatchQueue.main.async {
-                self?.tableView?.beginUpdates()
-                self?.readmeView.attributedText = self?.viewModel?.readmeContent
-                self?.tableView?.endUpdates()
+        self.viewModel?.readmeContent.bind({ readme in            
+            guard readme == readme else {
+                return
             }
-        }
+
+            DispatchQueue.main.async {
+                self.tableView?.beginUpdates()
+                self.readmeView.attributedText = readme
+                self.tableView?.endUpdates()
+            }
+        })
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

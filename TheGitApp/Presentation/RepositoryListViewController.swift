@@ -11,32 +11,47 @@ import UIKit
 
 class RepositoryListViewController: UITableViewController {
 
-    var viewModel: RepositoryListViewModel?
+    var viewModel: RepositoryListViewModel? {
+        didSet {
+            setupBind()
+        }
+    }
+        
     weak var delegate: RepositoryListViewControllerDelegate?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupBind()
-        viewModel?.fetch(searchQuery: "Android")
+        self.viewModel?.fetch(searchQuery: "Android")
     }
-    
+        
     func setupBind() {
-        viewModel?.resultFetched = { [weak self] () in
-            DispatchQueue.main.async {
-                self?.tableView.reloadData()
+        self.viewModel?.items.bind({ items in
+            self.tableView.reloadData()
+        })
+        
+        self.viewModel?.error.bind({ error in
+            guard let error = error else {
+                return
             }
-        }
+            
+            DispatchQueue.main.async {
+                let alert = UIAlertController(title: "Alert", message: error.localizedDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Retry", style: .cancel, handler: { (action) in
+                    self.viewModel?.fetch(searchQuery: "Android")
+                }))
+                self.present(alert, animated: true, completion: nil)
+            }
+        })
     }
 }
 
-///
 extension RepositoryListViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1;
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel?.numberOfItems ?? 0
+        return self.viewModel?.items.value?.items.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -45,7 +60,7 @@ extension RepositoryListViewController {
                     withIdentifier: "ItemListTableViewCell",
                                for: indexPath) as! ItemListTableViewCell
         
-        guard let repository = self.viewModel?.list[indexPath.row] else {
+        guard let repository = self.viewModel?.items.value?.items[indexPath.row] else {
             fatalError("Cannot get item at \(indexPath.row)")
         }
 
@@ -60,7 +75,7 @@ extension RepositoryListViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
            tableView.deselectRow(at: indexPath, animated: false)
 
-        guard let repository = self.viewModel?.list[indexPath.row] else {
+        guard let repository = self.viewModel?.items.value?.items[indexPath.row] else {
             fatalError("Cannot get item at \(indexPath.row)")
         }
         

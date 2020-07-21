@@ -28,16 +28,18 @@ class RepositoryListCoordinator: Coordinator {
         self.repositoryListViewController = repositoryListViewController
     }
 }
+
+
 /// MARK - RepositoryListCoordinator
 extension RepositoryListCoordinator: RepositoryListViewControllerDelegate {
     func didSelect(repository: Repository) {
 
         let viewModel = RepositoryDetailViewModel(apiClient: self.apiClient, repository: repository)
-        let repositoryDetailViewController = RepositoryDetailCoordinator(
+        let repositoryDetailViewCoordinator = RepositoryDetailCoordinator(
             navigator: self.navigator,
             viewModel: viewModel
         );
 
-        repositoryDetailViewController.start()
+        coordinate(to: repositoryDetailViewCoordinator)
     }
 }

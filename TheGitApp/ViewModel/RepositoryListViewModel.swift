@@ -1,17 +1,12 @@
 import Foundation
 
 class RepositoryListViewModel {
-    
-    var list = [Repository]()
-    
+
     private var apiClient: ApiProtocol
+    var items = Box<SearchResults?>(nil)
+    var error = Box<ErrorResult?>(nil)
     
-    var resultFetched: (()->())?
-    
-    var numberOfItems: Int {
-        return list.count
-    }
-    
+        
     var selectedRepository: Repository?
     
     init(apiClient: ApiProtocol) {
@@ -19,13 +14,13 @@ class RepositoryListViewModel {
     }
     
     func fetch(searchQuery: String) {
-        self.apiClient.getSearchRequest(searchQuery: searchQuery) { (result) in
-            guard let items = result?.items else {
-                print("On error")
-                return
+        self.apiClient.getSearchRequest(searchQuery: searchQuery) { result in
+            switch result {
+            case .success(let result):
+                self.items.value = result
+            case .failure(let error):
+                self.error.value = error
             }
-            self.list = items
-            self.resultFetched?()
         }
     }
 }

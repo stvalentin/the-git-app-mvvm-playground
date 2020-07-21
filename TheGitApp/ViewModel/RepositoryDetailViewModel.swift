@@ -4,9 +4,9 @@ import MarkdownKit
 class RepositoryDetailViewModel {
     let repository: Repository
     private let apiClient: ApiProtocol
-    var readmeContent: NSAttributedString?
     
-    var resultFetched: (()->())?
+    var error = Box<ErrorResult?>(nil)
+    var readmeContent = Box<NSAttributedString?>(nil)
     
     init(apiClient: ApiProtocol, repository: Repository) {
         self.repository = repository
@@ -16,9 +16,7 @@ class RepositoryDetailViewModel {
     private func getReadme() {
         apiClient.getReadmeRequest(repository: repository) { (result) in
             let markdownParser = MarkdownParser()
-            self.readmeContent = markdownParser.parse(result ?? "Readme file not present")
-            
-            self.resultFetched?()
+            self.readmeContent.value = markdownParser.parse(result ?? "Readme file not present")
         }
     }
     

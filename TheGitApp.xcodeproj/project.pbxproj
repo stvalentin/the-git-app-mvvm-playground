@@ -10,10 +10,13 @@
 		5C7AD178F22EC04DA0877981 /* Pods_TheGitApp_TheGitAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBEA3F5180B88C3C50244E1F /* Pods_TheGitApp_TheGitAppUITests.framework */; };
 		E82122EB3BDAB2B6D9DEF354 /* Pods_TheGitAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9883C1A80EB4A04490CB7E6D /* Pods_TheGitAppTests.framework */; };
 		F5F70D3C1FE324CD5A1AF294 /* Pods_TheGitApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63CD1D8C5F4F8C79F2EB13D6 /* Pods_TheGitApp.framework */; };
+		FE379B3124C72B2200004BA2 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE379B3024C72B2200004BA2 /* ApiClient.swift */; };
+		FE379B3324C72B4500004BA2 /* MockClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE379B3224C72B4500004BA2 /* MockClient.swift */; };
+		FE379B3524C72F0F00004BA2 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE379B3424C72F0F00004BA2 /* Box.swift */; };
+		FE379B3824C735B500004BA2 /* ApiProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE379B2E24C72AFC00004BA2 /* ApiProtocol.swift */; };
 		FE5B6AF5249A779600A97ADC /* RepositoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5B6AF4249A779600A97ADC /* RepositoryListViewController.swift */; };
 		FE6BC9A9249BC9D3009D3B78 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6BC9A8249BC9D3009D3B78 /* Repository.swift */; };
 		FE6BC9AB249BCBF1009D3B78 /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6BC9AA249BCBF1009D3B78 /* SearchResults.swift */; };
-		FE6BC9AD249BCCD5009D3B78 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6BC9AC249BCCD5009D3B78 /* NetworkManager.swift */; };
 		FE6BC9AF249C7A4E009D3B78 /* RepositoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6BC9AE249C7A4E009D3B78 /* RepositoryListViewModel.swift */; };
 		FE6BC9B2249C873C009D3B78 /* ItemListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6BC9B1249C873C009D3B78 /* ItemListTableViewCell.swift */; };
 		FE6BC9B4249CAC87009D3B78 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6BC9B3249CAC87009D3B78 /* AppCoordinator.swift */; };
@@ -65,10 +68,14 @@
 		DD6197EE08DD6C280FD8F4E9 /* Pods-TheGitApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheGitApp.release.xcconfig"; path = "Target Support Files/Pods-TheGitApp/Pods-TheGitApp.release.xcconfig"; sourceTree = "<group>"; };
 		F5CF40BE226FA28BF9FD54BA /* Pods-TheGitApp-TheGitAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheGitApp-TheGitAppUITests.release.xcconfig"; path = "Target Support Files/Pods-TheGitApp-TheGitAppUITests/Pods-TheGitApp-TheGitAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		FBEA3F5180B88C3C50244E1F /* Pods_TheGitApp_TheGitAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TheGitApp_TheGitAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE379B2E24C72AFC00004BA2 /* ApiProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiProtocol.swift; sourceTree = "<group>"; };
+		FE379B3024C72B2200004BA2 /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		FE379B3224C72B4500004BA2 /* MockClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockClient.swift; sourceTree = "<group>"; };
+		FE379B3424C72F0F00004BA2 /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 		FE5B6AF4249A779600A97ADC /* RepositoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListViewController.swift; sourceTree = "<group>"; };
+		FE5C269724A3407A00CDC4E8 /* NetworkManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NetworkManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE6BC9A8249BC9D3009D3B78 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		FE6BC9AA249BCBF1009D3B78 /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
-		FE6BC9AC249BCCD5009D3B78 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		FE6BC9AE249C7A4E009D3B78 /* RepositoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListViewModel.swift; sourceTree = "<group>"; };
 		FE6BC9B1249C873C009D3B78 /* ItemListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListTableViewCell.swift; sourceTree = "<group>"; };
 		FE6BC9B3249CAC87009D3B78 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -143,6 +150,7 @@
 		E86930BF954E4A6622814D8D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FE5C269724A3407A00CDC4E8 /* NetworkManager.framework */,
 				63CD1D8C5F4F8C79F2EB13D6 /* Pods_TheGitApp.framework */,
 				FBEA3F5180B88C3C50244E1F /* Pods_TheGitApp_TheGitAppUITests.framework */,
 				9883C1A80EB4A04490CB7E6D /* Pods_TheGitAppTests.framework */,
@@ -150,13 +158,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		FE6BC9B0249C8411009D3B78 /* ViewControllers */ = {
+		FE379B3624C72F1D00004BA2 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				FE379B2E24C72AFC00004BA2 /* ApiProtocol.swift */,
+				FE379B3024C72B2200004BA2 /* ApiClient.swift */,
+				FE379B3224C72B4500004BA2 /* MockClient.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		FE6BC9B0249C8411009D3B78 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
 				FE5B6AF4249A779600A97ADC /* RepositoryListViewController.swift */,
 				FE6BC9B5249CD35B009D3B78 /* RepositoryDetailViewController.swift */,
 			);
-			path = ViewControllers;
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		FE6BC9B7249CDA03009D3B78 /* Coordinator */ = {
@@ -173,8 +191,8 @@
 		FE6BC9BC249CDA6B009D3B78 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				FE6BC9AC249BCCD5009D3B78 /* NetworkManager.swift */,
 				FE6BC9BA249CDA48009D3B78 /* UIStoryboard+Coordinator.swift */,
+				FE379B3424C72F0F00004BA2 /* Box.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -192,8 +210,8 @@
 		FE9B23D4249E2CE800D3E4AE /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				FE9B23D2249DD84F00D3E4AE /* RepositoryDetailViewModel.swift */,
 				FE6BC9AE249C7A4E009D3B78 /* RepositoryListViewModel.swift */,
+				FE9B23D2249DD84F00D3E4AE /* RepositoryDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -251,6 +269,7 @@
 		FEAB6BAC249A745000A166F6 /* TheGitApp */ = {
 			isa = PBXGroup;
 			children = (
+				FE379B3624C72F1D00004BA2 /* Network */,
 				FE9B23DD249E638A00D3E4AE /* Mock */,
 				FE9B23D6249E5A9E00D3E4AE /* Resources */,
 				FE9B23D5249E2DA600D3E4AE /* Cell */,
@@ -258,7 +277,7 @@
 				FE9B23CF249DCEE800D3E4AE /* Model */,
 				FE6BC9BC249CDA6B009D3B78 /* Utils */,
 				FE6BC9B7249CDA03009D3B78 /* Coordinator */,
-				FE6BC9B0249C8411009D3B78 /* ViewControllers */,
+				FE6BC9B0249C8411009D3B78 /* Presentation */,
 				FEAB6BAD249A745000A166F6 /* AppDelegate.swift */,
 				FEAB6BBB249A745200A166F6 /* Info.plist */,
 				FEAB6BAF249A745000A166F6 /* SceneDelegate.swift */,
@@ -527,17 +546,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE379B3824C735B500004BA2 /* ApiProtocol.swift in Sources */,
+				FE379B3324C72B4500004BA2 /* MockClient.swift in Sources */,
 				FE6BC9A9249BC9D3009D3B78 /* Repository.swift in Sources */,
 				FE6BC9C0249CDB38009D3B78 /* RepositoryDetailCoordinator.swift in Sources */,
 				FE6BC9AB249BCBF1009D3B78 /* SearchResults.swift in Sources */,
 				FE6BC9B4249CAC87009D3B78 /* AppCoordinator.swift in Sources */,
-				FE6BC9AD249BCCD5009D3B78 /* NetworkManager.swift in Sources */,
 				FE6BC9BE249CDA98009D3B78 /* RepositoryListCoordinator.swift in Sources */,
 				FE9B23DF249E63AA00D3E4AE /* Repository+Stub.swift in Sources */,
 				FEAB6BAE249A745000A166F6 /* AppDelegate.swift in Sources */,
+				FE379B3524C72F0F00004BA2 /* Box.swift in Sources */,
 				FE6BC9B2249C873C009D3B78 /* ItemListTableViewCell.swift in Sources */,
 				FE6BC9B9249CDA15009D3B78 /* Coordinator.swift in Sources */,
 				FE5B6AF5249A779600A97ADC /* RepositoryListViewController.swift in Sources */,
+				FE379B3124C72B2200004BA2 /* ApiClient.swift in Sources */,
 				FE9B23D3249DD84F00D3E4AE /* RepositoryDetailViewModel.swift in Sources */,
 				FE6BC9B6249CD35B009D3B78 /* RepositoryDetailViewController.swift in Sources */,
 				FE6BC9AF249C7A4E009D3B78 /* RepositoryListViewModel.swift in Sources */,

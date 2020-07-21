@@ -10,10 +10,15 @@ class RepositoryDetailViewModelTests: XCTestCase {
         
         let callbackExpectation = expectation(description: "Finished Api request")
 
-        viewModel.resultFetched = {
+        viewModel.readmeContent.bind({ item in
+            guard let item = item else {
+                return
+            }
             callbackExpectation.fulfill()
-        }
+        })
+        
         viewModel.fetch()
+            
         XCTAssertNotNil(viewModel.readmeContent)
         waitForExpectations(timeout: 2.0);
     }
@@ -26,10 +31,13 @@ class RepositoryDetailViewModelTests: XCTestCase {
         
         let callbackExpectation = expectation(description: "Finished Api request")
         
-        viewModel.resultFetched = {
+        viewModel.readmeContent.bind({ item in
+            guard let item = item else {
+                return
+            }
             callbackExpectation.fulfill()
-        }
-
+        })
+        
         viewModel.fetch()
     
         waitForExpectations(timeout: 2.0);

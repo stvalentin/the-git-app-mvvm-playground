@@ -9,14 +9,15 @@ class RepositoryListViewModelTest: XCTestCase {
 
         let callbackExpectation = expectation(description: "Api finished retrieving information")
 
-        viewModel.resultFetched = {
+        viewModel.items.bind({ items in
+            guard let items = items else {
+                return
+            }
             callbackExpectation.fulfill()
-        }
-        
+        })
         viewModel.fetch(searchQuery: "Anything")
         
-        XCTAssertEqual(viewModel.list.count, 30)
-        XCTAssertEqual(viewModel.numberOfItems, 30)
+        XCTAssertEqual(viewModel.items.value?.items.count, 30)
         waitForExpectations(timeout: 1.0)
     }
     
@@ -27,14 +28,16 @@ class RepositoryListViewModelTest: XCTestCase {
         let callbackExpectation = expectation(description: "Api finished retrieving information")
         callbackExpectation.isInverted = true
         
-        viewModel.resultFetched = {
+        viewModel.items.bind({ items in
+            guard let items = items else {
+                return
+            }
             callbackExpectation.fulfill()
-        }
-        
+        })
         viewModel.fetch(searchQuery: "Anything")
         
-        XCTAssertEqual(viewModel.list.count, 0)
-        XCTAssertEqual(viewModel.numberOfItems, 0)
+        XCTAssertEqual(viewModel.items.value?.items.count, Optional(nil))
+        XCTAssertEqual(viewModel.error.value, ErrorResult.invalidData)
         waitForExpectations(timeout: 1.0)
     }
 }

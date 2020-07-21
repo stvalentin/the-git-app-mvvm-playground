@@ -26,17 +26,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = scene as? UIWindowScene else { return }
         let window = UIWindow(windowScene: windowScene)
         
+        
         let apiClient: ApiProtocol = {
             if CommandLine.arguments.contains("-mockApi") {
                 return MockClient(successfull: true)
             } else if CommandLine.arguments.contains("-mockApiFail") {
-                    return MockClient(successfull: false)
+                return MockClient(successfull: false)
             } else {
                 return ApiClient()
             }
         }()
-        
+                
         let appCoordinator = AppCoordinator(window: window, navigationController: navigationController, apiClient: apiClient)
+        
         
         self.window = window
         self.appCoordinator = appCoordinator
