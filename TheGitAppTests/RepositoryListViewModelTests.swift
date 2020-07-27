@@ -9,13 +9,14 @@ class RepositoryListViewModelTest: XCTestCase {
 
         let callbackExpectation = expectation(description: "Api finished retrieving information")
 
+        viewModel.fetch(searchQuery: "Anything")
         viewModel.items.bind({ items in
             guard let items = items else {
                 return
             }
             callbackExpectation.fulfill()
         })
-        viewModel.fetch(searchQuery: "Anything")
+        
         
         XCTAssertEqual(viewModel.items.value?.items.count, 30)
         waitForExpectations(timeout: 1.0)
