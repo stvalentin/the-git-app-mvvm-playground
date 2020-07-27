@@ -7,7 +7,7 @@ class MockClient: ApiProtocol {
         self.successfull = successfull
     }
 
-    func getSearchRequest(searchQuery: String, completion: @escaping (Result<SearchResults, ErrorResult>) -> Void) {
+    func getSearchRequest(searchQuery: String,  page: Int, completion: @escaping (Result<SearchResults, ErrorResult>) -> Void) {
         let filePath = "repositories"
         if !successfull {
             completion(.failure(.invalidData))

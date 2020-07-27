@@ -1,7 +1,7 @@
 import Foundation
 
 protocol ApiProtocol {
-    func getSearchRequest(searchQuery: String, completion: @escaping (Result<SearchResults, ErrorResult>) -> Void)
+    func getSearchRequest(searchQuery: String, page: Int, completion: @escaping (Result<SearchResults, ErrorResult>) -> Void)
     func getReadmeRequest(repository: Repository, completion: @escaping(String?) -> Void)
 }
 

@@ -33,6 +33,8 @@ class RepositoryListViewController: UITableViewController {
             setupBind()
         }
     }
+    
+    var pageLoadingSpinner: UIActivityIndicatorView?
         
     weak var delegate: RepositoryListViewControllerDelegate?
     
@@ -41,6 +43,7 @@ class RepositoryListViewController: UITableViewController {
         definesPresentationContext  = true
         self.navigationController?.navigationBar.isTranslucent = true
         searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
         tableView.tableHeaderView = searchController.searchBar
         
     }
@@ -58,9 +61,23 @@ class RepositoryListViewController: UITableViewController {
             DispatchQueue.main.async {
                 let alert = UIAlertController(title: "Alert", message: error.localizedDescription, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Retry", style: .cancel, handler: { (action) in
-                    self.viewModel?.fetch(searchQuery: "Android")
+                    self.viewModel?.fetch()
                 }))
                 self.present(alert, animated: true, completion: nil)
+            }
+        })
+        
+        self.viewModel?.isFetchInProgress.bind({ (active) in
+            switch (active) {
+                case true:
+                    self.pageLoadingSpinner?.removeFromSuperview()
+                    self.pageLoadingSpinner = UIActivityIndicatorView(style: .medium)
+                    self.pageLoadingSpinner?.startAnimating()
+                    self.pageLoadingSpinner?.isHidden = false
+                    self.pageLoadingSpinner?.frame = .init(x: 0, y: 0, width: self.tableView.frame.width, height: 44)
+                    self.tableView.tableFooterView = self.pageLoadingSpinner
+            case false:
+                self.tableView.tableFooterView = nil
             }
         })
     }
@@ -68,25 +85,23 @@ class RepositoryListViewController: UITableViewController {
 
 extension RepositoryListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        self.viewModel?.searchText.value = searchController.searchBar.text
+        //print(#line)
     }
 }
 
 extension RepositoryListViewController: UISearchBarDelegate, UITextFieldDelegate {
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        return true
-    }
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         searchBar.showsScopeBar = false
         viewModel?.searchText.value = searchBar.text
     }
-
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        viewModel?.searchText.value = searchBar.text
         searchBar.resignFirstResponder()
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        return true
     }
 }
 
@@ -110,6 +125,13 @@ extension RepositoryListViewController {
         }
 
         cell.configureCell(repository: repository)
+        let totalItems =  (self.viewModel?.items.value?.items.count ?? 0) - 1
+           print(indexPath.row, totalItems)
+        if indexPath.row == totalItems {
+            print("loading next ppage")
+            viewModel?.willLoadNextPage()
+        }
+        
         return cell
     }
     

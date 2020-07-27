@@ -18,14 +18,15 @@ class ApiClient: ApiProtocol {
         self.queue = DispatchQueue(label: "com.thegitapp.api", qos: .background, attributes: .concurrent)
     }
     
-    func getSearchRequest(searchQuery: String, completion: @escaping (Result<SearchResults, ErrorResult>) -> Void)  {
+    func getSearchRequest(searchQuery: String, page: Int, completion: @escaping (Result<SearchResults, ErrorResult>) -> Void)  {
         
             let requestParameters: Parameters = [
                 "q": searchQuery,
+                "page": page,
                 "sort": "stars",
                 "order": "desc"
             ]
-    
+
             AF.request(
                 baseUrl, parameters: requestParameters
             )
