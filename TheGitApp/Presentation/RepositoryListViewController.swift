@@ -10,6 +10,23 @@ import Foundation
 import UIKit
 
 class RepositoryListViewController: UITableViewController {
+    
+    private let searchController = { () -> UISearchController in
+        let searchController = UISearchController(
+            searchResultsController: nil
+        )
+        searchController.hidesNavigationBarDuringPresentation = true
+        searchController.obscuresBackgroundDuringPresentation = true
+//        searchController.searchBar.scopeButtonTitles = [
+//            "Repositories",
+//            "Commits",
+//            "Code",
+//            "Topics",
+//            "Labels",
+//        ]
+        searchController.searchBar.sizeToFit()
+        return searchController
+    }()
 
     var viewModel: RepositoryListViewModel? {
         didSet {
@@ -21,7 +38,11 @@ class RepositoryListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.viewModel?.fetch(searchQuery: "Android")
+        definesPresentationContext  = true
+        self.navigationController?.navigationBar.isTranslucent = true
+        searchController.searchResultsUpdater = self
+        tableView.tableHeaderView = searchController.searchBar
+        
     }
         
     func setupBind() {
@@ -42,6 +63,30 @@ class RepositoryListViewController: UITableViewController {
                 self.present(alert, animated: true, completion: nil)
             }
         })
+    }
+}
+
+extension RepositoryListViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        self.viewModel?.searchText.value = searchController.searchBar.text
+    }
+}
+
+extension RepositoryListViewController: UISearchBarDelegate, UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.showsScopeBar = false
+        viewModel?.searchText.value = searchBar.text
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 }
 

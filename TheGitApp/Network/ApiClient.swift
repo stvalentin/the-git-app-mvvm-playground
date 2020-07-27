@@ -36,6 +36,7 @@ class ApiClient: ApiProtocol {
                 case .success(let result):
                     completion(.success(result))
                 case .failure(let error):
+                    print(error)
                     completion(.failure(.invalidData))
                 }
             }

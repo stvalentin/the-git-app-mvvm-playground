@@ -7,11 +7,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Android Repositories-->
+        <!--Explore-->
         <scene sceneID="tXY-bT-zIZ">
             <objects>
-                <tableViewController storyboardIdentifier="RepositoryListViewController" title="Android Repositories" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RQa-sB-Zna" customClass="RepositoryListViewController" customModule="TheGitApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Lbm-NU-kdT">
+                <tableViewController storyboardIdentifier="RepositoryListViewController" title="Explore" extendedLayoutIncludesOpaqueBars="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RQa-sB-Zna" customClass="RepositoryListViewController" customModule="TheGitApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Lbm-NU-kdT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -67,6 +67,7 @@
                             <outlet property="delegate" destination="RQa-sB-Zna" id="3Su-EA-hsn"/>
                         </connections>
                     </tableView>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QWs-8x-uBd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
